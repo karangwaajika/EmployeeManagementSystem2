@@ -18,11 +18,11 @@ public class Main {
                 "ajika", "HR", 2000, 2.5,
                 1, true);
         Employee<Integer> employee2 = new Employee<>(2,
-                "Joel", "  ", 1000, 5.0,
+                "Joel", "Finance", 1000, 5.0,
                 2, true);
         Employee<Integer> employee3 = new Employee<>(3,
                 "Gandhi Nshaka", "HR", 1100000, 4.6,
-                -3, true);
+                3, true);
 
         // insert employee
         try {
@@ -32,6 +32,13 @@ public class Main {
         } catch (InvalidSalaryException | RatingOutOfRangeException | InvalidRatingException |
                  InvalidYearsOfExperienceException | EmptyDepartmentException | EmptyNameException e) {
             logger.log(Level.ERROR, e.getMessage());
+        }
+
+        // Delete employee
+        try {
+            db.removeEmployee(5);
+        } catch (EmployeeNotFoundException enfe) {
+            logger.log(Level.ERROR, enfe.getMessage());
         }
 
 //        ################### Report ##########################

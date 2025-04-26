@@ -39,11 +39,12 @@ public class Database<T> {
     }
 
     public String removeEmployee(T employeeId) {
-        if (employees.containsKey(employeeId)) {
-            employees.remove(employeeId);
-            return "Employee's deleted successfully !!";
+        if (!(employees.containsKey(employeeId))) {
+            throw new EmployeeNotFoundException("Employee ID provided doesn't exist: "
+                    + employeeId);
         }
-        return "Employee Id doesn't exist";
+        employees.remove(employeeId);
+        return "Employee's deleted successfully !!";
 
     }
 
