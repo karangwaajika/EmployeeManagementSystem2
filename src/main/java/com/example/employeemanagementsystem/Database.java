@@ -11,13 +11,17 @@ public class Database<T> {
 
     public String addEmployee(T employeeId, Employee<T> employee) {
         if (employee.getSalary() < 0) {
-            throw new InvalidSalaryException("Salary cannot be negative");
+            throw new InvalidSalaryException("Salary cannot be negative : "
+                    + employee.getSalary());
         }
         if (employee.getPerformanceRating() < 0) {
-            throw new InvalidRatingException("You cannot rate with a negative number");
+            throw new InvalidRatingException("You cannot rate with a negative number: "
+                    + employee.getPerformanceRating());
         }
         if (employee.getPerformanceRating() > 5) {
-            throw new RatingOutOfRangeException("Rating cannot be greater than 5.0");
+            throw new RatingOutOfRangeException("Rating cannot be greater than 5.0: "
+                    + employee.getPerformanceRating());
+        }
         }
         employees.put(employeeId, employee);
         return "Employee's added successfully !!";
