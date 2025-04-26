@@ -2,6 +2,7 @@ package com.example.employeemanagementsystem;
 
 import com.example.employeemanagementsystem.exceptions.InvalidRatingException;
 import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
+import com.example.employeemanagementsystem.exceptions.InvalidYearsOfExperienceException;
 import com.example.employeemanagementsystem.exceptions.RatingOutOfRangeException;
 
 import java.util.*;
@@ -22,6 +23,9 @@ public class Database<T> {
             throw new RatingOutOfRangeException("Rating cannot be greater than 5.0: "
                     + employee.getPerformanceRating());
         }
+        if (employee.getYearsOfExperience() < 0) {
+            throw new InvalidYearsOfExperienceException("Years of experience provide is a negative number: "
+                    + employee.getYearsOfExperience());
         }
         employees.put(employeeId, employee);
         return "Employee's added successfully !!";

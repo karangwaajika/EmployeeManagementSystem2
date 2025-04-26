@@ -5,6 +5,7 @@ import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
 
 import java.util.*;
 
+import com.example.employeemanagementsystem.exceptions.InvalidYearsOfExperienceException;
 import com.example.employeemanagementsystem.exceptions.RatingOutOfRangeException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -20,17 +21,19 @@ public class Main {
                 "ajika", "HR", 2000, 2.5,
                 1, true);
         Employee<Integer> employee2 = new Employee<>(2,
-                "joel", "Finance", 1000, -5.0,
+                "joel", "Finance", 1000, 5.0,
                 2, true);
         Employee<Integer> employee3 = new Employee<>(3,
-                "Joella Nshaka", "HR", 1100000, 5.0,
-                3, true);
+                "Gandhi Nshaka", "HR", 1100000, 4.6,
+                -3, true);
 
+        // insert employee
         try {
             db.addEmployee(employee1.getEmployeeId(), employee1);
             db.addEmployee(employee2.getEmployeeId(), employee2);
             db.addEmployee(employee3.getEmployeeId(), employee3);
-        } catch (InvalidSalaryException | RatingOutOfRangeException | InvalidRatingException e) {
+        } catch (InvalidSalaryException | RatingOutOfRangeException | InvalidRatingException |
+                 InvalidYearsOfExperienceException e) {
             logger.log(Level.ERROR, e.getMessage());
         }
 
