@@ -14,13 +14,13 @@ public class Main {
     public static void main(String[] args) {
         Database<Integer> db = new Database<>(); // initialize database
 
-        Employee<Integer> employee1 = new Employee<>(1,
+        Employee<Integer> employee1 = new Employee<>(Employee.nbrOfEmployees,
                 "ajika", "HR", 2000, 2.5,
                 1, true);
-        Employee<Integer> employee2 = new Employee<>(2,
+        Employee<Integer> employee2 = new Employee<>(Employee.nbrOfEmployees,
                 "Joel", "Finance", 1000, 5.0,
                 2, true);
-        Employee<Integer> employee3 = new Employee<>(3,
+        Employee<Integer> employee3 = new Employee<>(Employee.nbrOfEmployees,
                 "Gandhi Nshaka", "HR", 1100000, 4.6,
                 3, true);
 
