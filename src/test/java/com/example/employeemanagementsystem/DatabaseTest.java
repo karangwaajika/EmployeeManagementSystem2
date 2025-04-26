@@ -53,7 +53,15 @@ class DatabaseTest {
             db.filterByDepartment("Coders");
         });
     }
+
+    @Test
+    void deleteEmployee_usingEmployeeID_shouldReturnTheDeletedID() {
+        Employee<Integer> employee = new Employee<>(Employee.nbrOfEmployees,
+                "Deborah", "IT", 805000, 4.5,
+                4, true);
+        db.addEmployee(employee.getEmployeeId(), employee);
+        assertEquals(employee.employeeId, db.removeEmployee(employee.getEmployeeId()));
+
+    }
     
-
-
 }

@@ -38,13 +38,13 @@ public class Database<T> {
         return new ArrayList<>(employees.values());
     }
 
-    public String removeEmployee(T employeeId) {
+    public T removeEmployee(T employeeId) {
         if (!(employees.containsKey(employeeId))) {
             throw new EmployeeNotFoundException("Employee ID provided doesn't exist: "
                     + employeeId);
         }
         employees.remove(employeeId);
-        return "Employee's deleted successfully !!";
+        return employeeId;
 
     }
 
