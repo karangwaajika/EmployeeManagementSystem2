@@ -1,9 +1,11 @@
 package com.example.employeemanagementsystem;
 
+import com.example.employeemanagementsystem.exceptions.InvalidRatingException;
 import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
 
 import java.util.*;
 
+import com.example.employeemanagementsystem.exceptions.RatingOutOfRangeException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,18 +20,18 @@ public class Main {
                 "ajika", "HR", 2000, 2.5,
                 1, true);
         Employee<Integer> employee2 = new Employee<>(2,
-                "joel", "Finance", 1000, 3,
+                "joel", "Finance", 1000, -5.0,
                 2, true);
         Employee<Integer> employee3 = new Employee<>(3,
-                "Joella Nshaka", "HR", 1100000, 4.5,
+                "Joella Nshaka", "HR", 1100000, 5.0,
                 3, true);
 
         try {
             db.addEmployee(employee1.getEmployeeId(), employee1);
             db.addEmployee(employee2.getEmployeeId(), employee2);
             db.addEmployee(employee3.getEmployeeId(), employee3);
-        } catch (InvalidSalaryException ise) {
-            logger.log(Level.ERROR, ise.getMessage());
+        } catch (InvalidSalaryException | RatingOutOfRangeException | InvalidRatingException e) {
+            logger.log(Level.ERROR, e.getMessage());
         }
 
 //        ################### Report ##########################

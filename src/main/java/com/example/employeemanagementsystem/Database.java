@@ -1,6 +1,8 @@
 package com.example.employeemanagementsystem;
 
+import com.example.employeemanagementsystem.exceptions.InvalidRatingException;
 import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
+import com.example.employeemanagementsystem.exceptions.RatingOutOfRangeException;
 
 import java.util.*;
 
@@ -10,6 +12,12 @@ public class Database<T> {
     public String addEmployee(T employeeId, Employee<T> employee) {
         if (employee.getSalary() < 0) {
             throw new InvalidSalaryException("Salary cannot be negative");
+        }
+        if (employee.getPerformanceRating() < 0) {
+            throw new InvalidRatingException("You cannot rate with a negative number");
+        }
+        if (employee.getPerformanceRating() > 5) {
+            throw new RatingOutOfRangeException("Rating cannot be greater than 5.0");
         }
         employees.put(employeeId, employee);
         return "Employee's added successfully !!";
