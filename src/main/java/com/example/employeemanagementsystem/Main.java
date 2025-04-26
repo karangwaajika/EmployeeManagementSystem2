@@ -41,6 +41,13 @@ public class Main {
             logger.log(Level.ERROR, enfe.getMessage());
         }
 
+        // Filter by department
+        try {
+            db.filterByDepartment("HR");
+        } catch (InvalidDepartmentException ide) {
+            logger.log(Level.ERROR, ide.getMessage());
+        }
+
 //        ################### Report ##########################
 
         System.out.println("Print Report: ");
