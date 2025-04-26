@@ -1,9 +1,6 @@
 package com.example.employeemanagementsystem;
 
-import com.example.employeemanagementsystem.exceptions.InvalidRatingException;
-import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
-import com.example.employeemanagementsystem.exceptions.InvalidYearsOfExperienceException;
-import com.example.employeemanagementsystem.exceptions.RatingOutOfRangeException;
+import com.example.employeemanagementsystem.exceptions.*;
 
 import java.util.*;
 
@@ -27,7 +24,13 @@ public class Database<T> {
             throw new InvalidYearsOfExperienceException("Years of experience provide is a negative number: "
                     + employee.getYearsOfExperience());
         }
-        employees.put(employeeId, employee);
+        if (employee.getName().trim().isEmpty()) {
+            throw new EmptyNameException("Name cannot be empty");
+        }
+        if (employee.getDepartment().trim().isEmpty()) {
+            throw new EmptyDepartmentException("Department cannot be empty");
+        }
+        employees.put(employeeId, employee); // insert employee
         return "Employee's added successfully !!";
     }
 
