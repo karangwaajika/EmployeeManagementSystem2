@@ -1,5 +1,7 @@
 package com.example.employeemanagementsystem;
 
+import com.example.employeemanagementsystem.exceptions.YearsOfExperienceCannotBeNullException;
+
 public class Employee<T> implements Comparable<Employee<T>> {
     T employeeId;
     private String name;
@@ -20,7 +22,7 @@ public class Employee<T> implements Comparable<Employee<T>> {
         this.performanceRating = performanceRating;
         this.yearsOfExperience = yearsOfExperience;
         this.isActive = isActive;
-        nbrOfEmployees ++;
+        nbrOfEmployees++;
     }
 
     public double getSalary() {
@@ -81,6 +83,9 @@ public class Employee<T> implements Comparable<Employee<T>> {
 
     @Override
     public int compareTo(Employee<T> o) {
+        if (Integer.valueOf(this.getYearsOfExperience()) == null || Integer.valueOf(o.getYearsOfExperience()) == null) {
+            throw new YearsOfExperienceCannotBeNullException("You cannot sort when years of experience is null");
+        }
         if (this.getYearsOfExperience() < o.getYearsOfExperience()) {
             return 1;
         } else {
