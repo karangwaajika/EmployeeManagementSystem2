@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.employeemanagementsystem.Controller"
+            prefWidth="600" prefHeight="400">
+
+    <VBox spacing="20"
+          AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+        <!-- Header -->
+        <Label text="Employee Management System"
+               style="-fx-font-size: 28px; -fx-font-weight: bold;"
+               alignment="CENTER"/>
+
+        <Label text="Add Employee"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"
+               alignment="TOP_LEFT"/>
+        <!-- Employee Form Section -->
+        <VBox spacing="10">
+            <TextField fx:id="nameField" promptText="Name"/>
+
+            <TextField fx:id="salaryField" promptText="Salary"/>
+
+            <TextField fx:id="ratingField" promptText="Performance Rating (1-5)"/>
+
+            <TextField fx:id="experienceField" promptText="Years of Experience"/>
+            <HBox spacing="10">
+                <ComboBox fx:id="departmentComboBox" promptText="Select Department">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="HR"/>
+                            <String fx:value="IT"/>
+                            <String fx:value="Finance"/>
+                            <String fx:value="Marketing"/>
+                            <String fx:value="Operations"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <CheckBox fx:id="isActiveCheckBox" text="Is Active"/>
+            </HBox>
+
+
+            <Button text="Submit" onAction="#handleSubmit"/>
+        </VBox>
+        <!-- Controls Row: Search + Filter + Delete -->
+        <HBox spacing="10">
+            <TextField fx:id="searchField" promptText="Search..."/>
+
+            <ComboBox fx:id="departmentFilterComboBox" promptText="Filter by Department">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Filter All"/>
+                        <String fx:value="HR"/>
+                        <String fx:value="IT"/>
+                        <String fx:value="Finance"/>
+                        <String fx:value="Marketing"/>
+                        <String fx:value="Operations"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <ComboBox fx:id="sortComboBox" promptText="Sort by">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Sort by"/>
+                        <String fx:value="Salary"/>
+                        <String fx:value="Rating"/>
+                        <String fx:value="YearsOfExperience"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Button fx:id="deleteButton" text="Delete Selected" onAction="#handleDeleteEmployee"/>
+        </HBox>
+        <!-- TableView -->
+        <TableView fx:id="employeeTable" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Name"/>
+                <TableColumn fx:id="departmentColumn" text="Department"/>
+                <TableColumn fx:id="salaryColumn" text="Salary"/>
+                <TableColumn fx:id="ratingColumn" text="Rating"/>
+                <TableColumn fx:id="experienceColumn" text="Experience"/>
+                <TableColumn fx:id="activeColumn" text="Active"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+
+
+</AnchorPane>
