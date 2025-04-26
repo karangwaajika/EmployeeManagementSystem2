@@ -1,11 +1,16 @@
 package com.example.employeemanagementsystem;
 
+import com.example.employeemanagementsystem.exceptions.InvalidSalaryException;
+
 import java.util.*;
 
 public class Database<T> {
     private final HashMap<T, Employee<T>> employees = new HashMap<>();
 
     public String addEmployee(T employeeId, Employee<T> employee) {
+        if (employee.getSalary() < 0) {
+            throw new InvalidSalaryException("Salary cannot be negative");
+        }
         employees.put(employeeId, employee);
         return "Employee's added successfully !!";
     }
