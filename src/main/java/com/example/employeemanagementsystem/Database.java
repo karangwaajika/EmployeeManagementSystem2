@@ -39,16 +39,21 @@ public class Database<T> {
     }
 
     public String removeEmployee(T employeeId) {
-        if (employees.containsKey(employeeId)) {
-            employees.remove(employeeId);
-            return "Employee's deleted successfully !!";
+        if (!(employees.containsKey(employeeId))) {
+            throw new EmployeeNotFoundException("Employee ID provided doesn't exist: "
+                    + employeeId);
         }
-        return "Employee Id doesn't exist";
+        employees.remove(employeeId);
+        return "Employee's deleted successfully !!";
 
     }
 
     public void updateEmployeeDetails(T employeeId, String field, Object newValue) {
 
+        if (!(employees.containsKey(employeeId))) {
+            throw new EmployeeNotFoundException("Employee ID provided doesn't exist: "
+                    + employeeId);
+        }
         Employee<T> employee = employees.get(employeeId);
         if (newValue instanceof Integer && field.equals("yearsOfExperience")) {
             employee.setYearsOfExperience((Integer) newValue);
@@ -73,8 +78,14 @@ public class Database<T> {
     }
 
     public List<Employee<T>> filterByDepartment(String field) {
-        return employees.values().stream()
+        List<Employee<T>> employeeList = employees.values().stream()
                 .filter(n -> n.getDepartment().equals(field)).toList();
+        if (employeeList.isEmpty()) {
+            throw new InvalidDepartmentException("No department with the name '"
+                    + field + "'");
+        }
+
+        return employeeList;
     }
 
     public List<Employee<T>> filterByName(String name) {
