@@ -59,6 +59,15 @@ public class Main {
             logger.log(Level.ERROR, rcnbne.getMessage());
         }
 
+        // search employee
+        try {
+            db.filterByName("kendrick")
+                    .forEach(n -> System.out.println(n.getName()));
+        } catch (EmployeeNotExistingException enee) {
+            logger.log(Level.ERROR, enee.getMessage());
+        }
+
+
 //        ################### Report ##########################
 
         System.out.println("Print Report: ");

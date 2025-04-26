@@ -89,8 +89,12 @@ public class Database<T> {
     }
 
     public List<Employee<T>> filterByName(String name) {
-        return employees.values().stream()
+        List<Employee<T>> employeeList = employees.values().stream()
                 .filter(n -> n.getName().contains(name)).toList();
+        if (employeeList.isEmpty()) {
+            throw new EmployeeNotExistingException("Employee name '" + name + "'does not exist");
+        }
+        return employeeList;
     }
 
     public List<Employee<T>> searchMinimumRating(double rating) {
