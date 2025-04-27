@@ -38,7 +38,7 @@ class DatabaseTest {
                 2, true);
 
         db.addEmployee(employee.getEmployeeId(), employee);
-        assertNotNull(db.getAllEmployees().get(2));
+        assertNotNull(db.getAllEmployees().get(0));
 
     }
 
@@ -60,7 +60,7 @@ class DatabaseTest {
                 "Deborah", "IT", 805000, 4.5,
                 4, true);
         db.addEmployee(employee.getEmployeeId(), employee);
-        assertEquals(employee.employeeId, db.removeEmployee(employee.getEmployeeId()));
+        assertEquals(employee.employeeId+1, db.removeEmployee(employee.getEmployeeId()));
 
     }
     

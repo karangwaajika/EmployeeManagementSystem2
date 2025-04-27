@@ -13,8 +13,6 @@ public class Main {
 
     public static void main(String[] args) {
         Database<Integer> db = new Database<>(); // initialize database
-        ArrayList<Employee<Integer>> a = db.getAllEmployees();
-        Collections.sort(db.getAllEmployees());
 
         Employee<Integer> employee1 = new Employee<>(Employee.nbrOfEmployees,
                 "ajika", "HR", 2000, 2.5,
@@ -60,12 +58,12 @@ public class Main {
         }
 
         // search employee
-        try {
-            db.filterByName("kendrick")
-                    .forEach(n -> System.out.println(n.getName()));
-        } catch (EmployeeNotExistingException enee) {
-            logger.log(Level.ERROR, enee.getMessage());
-        }
+//        try {
+//            db.filterByName("kendrick")
+//                    .forEach(n -> System.out.println(n.getName()));
+//        } catch (EmployeeNotExistingException enee) {
+//            logger.log(Level.ERROR, enee.getMessage());
+//        }
 
 
 //        ################### Report ##########################

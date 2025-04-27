@@ -88,7 +88,7 @@ public class Controller {
                         "Please Provide a valid years of experience.");
                 return;
             }
-            if (!(Pattern.matches("[1-5.]+", ratingField.getText()))) {
+            if (!(Pattern.matches("[1.0-5.0]+", ratingField.getText()))) {
                 showAlert(Alert.AlertType.ERROR, "Invalid Experience",
                         "Please Provide a rating number.");
                 return;
